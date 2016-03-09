@@ -19,7 +19,7 @@ class Matrix extends React.Component {
           let MatrixRows = this.state.questions.map(
             td => {
                 return(
-                   <tr>hi</tr>
+                  <MatrixRow/>
                 )
             }
         )
