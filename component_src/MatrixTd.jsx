@@ -2,7 +2,6 @@ import React from 'react';
 
 class MatrixTd extends React.Component {
 
-
 	render(){     
 		return (
             
