@@ -1,4 +1,5 @@
 import React from 'react';
+import MatrixInput from './MatrixInput.jsx';
 
 
 class App extends React.Component {
@@ -10,7 +11,7 @@ class App extends React.Component {
 	render(){
 		return (
 			<div>
-                  <p>hello world</p>
+                  <MatrixInput/>
 			</div>
 		)
 	}
