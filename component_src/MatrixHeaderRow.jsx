@@ -6,11 +6,18 @@ class MatrixHeader extends React.Component {
 
 	render(){
         
-        let MatrixHeaderEls = <MatrixHeaderEl/>
+        let MatrixHeaderEls = this.props.HeaderRows.map(
+            th => {
+                return(
+                    <MatrixHeaderEl HeaderEl={th}/>
+                )
+            }
+        )
               
 		return (
             
            <tr>
+                <th></th>
                 {MatrixHeaderEls}
                 
            </tr>

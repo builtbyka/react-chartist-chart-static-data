@@ -4,14 +4,29 @@ import MatrixRow from './MatrixRow.jsx';
 
 class Matrix extends React.Component {
     
+    constructor(props){
+        super(props);
+        this.state = {
+            options : ['Affective', 'Cognitive'],
+            type : 'radio',
+            questions : ['date','movie','gift'],
+        };
+       
+    }
+    
 
 	render(){
-        let MatrixHeaderRows = <MatrixHeaderRow/>
-        let MatrixRows = <MatrixRow/>;
+          let MatrixRows = this.state.questions.map(
+            td => {
+                return(
+                   <tr>hi</tr>
+                )
+            }
+        )
 		return (
 			<table>
                 <thead>
-                    {MatrixHeaderRows}
+                    <MatrixHeaderRow  HeaderRows={this.state.options}/>
                 </thead>
                 <tbody>
                     {MatrixRows}

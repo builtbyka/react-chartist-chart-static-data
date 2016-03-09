@@ -4,8 +4,10 @@ class MatrixHeaderEl extends React.Component {
 
 	render(){     
 		return (
+        
+            <th>{this.props.HeaderEl}</th>
             
-           <th>hi</th>
+         
 		)
 	}
 }
