@@ -1,16 +1,16 @@
 import React from 'react';
-import MatrixTd from './MatrixTd.jsx';
+import MatrixEl from './MatrixEls.jsx';
 
 class MatrixRow extends React.Component {
 
 
 	render(){
-        let MatrixTds = <MatrixTd/>;
+        let MatrixEls = <MatrixEl/>
               
 		return (
             
-           <tr>
-               {MatrixTds}
+           <tr>  
+                {MatrixEls}
            </tr>
 		)
 	}

@@ -1,6 +1,6 @@
 import React from 'react';
 
-class MatrixTd extends React.Component {
+class MatrixEl extends React.Component {
 
 	render(){     
 		return (
@@ -11,4 +11,4 @@ class MatrixTd extends React.Component {
 }
 
 
-export default MatrixTd
+export default MatrixEl
