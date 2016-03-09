@@ -4,7 +4,7 @@ class MatrixEl extends React.Component {
 
 	render(){     
 		return (
-           <td>{this.props.BodyEl}</td>
+           <td>hi</td>
 		)
 	}
 }

@@ -16,10 +16,11 @@ class Matrix extends React.Component {
     
 
 	render(){
-          let MatrixRows = this.state.questions.map(
+         let ElsAmount = this.state.options.length,
+         MatrixRows = this.state.questions.map(
             td => {
                 return(
-                  <MatrixRow/>
+                  <MatrixRow BodyRows={td} TdAmount={ElsAmount}/>
                 )
             }
         )
