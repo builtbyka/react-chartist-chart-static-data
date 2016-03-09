@@ -3,16 +3,14 @@ var webpack = require('webpack');
 var node_modules = path.resolve(__dirname, 'node_modules');
 
 var definePlugin = new webpack.DefinePlugin({
-	__DEV__:false
+	__DEV__:true
 });
 
 module.exports = {
 	devtool: 'source-map',
     
     entry: [
-    'webpack-dev-server/client?http://localhost:3000', // WebpackDevServer host and port
-    'webpack/hot/only-dev-server', // "only" prevents reload on syntax errors
-    './component_src/browser.jsx' // Your appʼs entry point
+        './component_src/browser.jsx' // Your appʼs entry point
     ],
 
 	resolve: {
@@ -30,7 +28,7 @@ module.exports = {
 	module: {
 		loaders: [{
 			test: /\.jsx?$/,
-			loaders: ['react-hot','babel'],
+			loaders: ['babel'],
 			exclude: [node_modules],
 			include: path.join(__dirname, 'component_src')
 		},{
@@ -44,10 +42,7 @@ module.exports = {
 			//set to production for build
 			"NODE_ENV": JSON.stringify("development")
 		},
-		__DEV__:false
-	}),
-    new webpack.HotModuleReplacementPlugin()]
-		//new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/), //prevents build getting bloated with momentjs local plugins
-		//new webpack.optimize.DedupePlugin()] //remove duplicated packages
-	//new webpack.optimize.UglifyJsPlugin()] //minify
+		__DEV__:true
+	})]
+
 };
