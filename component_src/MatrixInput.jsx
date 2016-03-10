@@ -7,9 +7,9 @@ class Matrix extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            options : ['Affective', 'Cognitive'],
+            options : ['Affective', 'Cognitive', 'Another'],
             type : 'radio',
-            questions : ['date','movie','gift'],
+            questions : ['date','movie','gift','what'],
         };
        
     }
@@ -20,7 +20,7 @@ class Matrix extends React.Component {
          MatrixRows = this.state.questions.map(
             td => {
                 return(
-                  <MatrixRow BodyRows={td} TdAmount={ElsAmount}/>
+                  <MatrixRow BodyRows={td} TdAmount={ElsAmount} InputType={this.state.type}/>
                 )
             }
         )

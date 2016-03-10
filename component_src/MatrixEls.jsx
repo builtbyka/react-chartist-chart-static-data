@@ -1,10 +1,13 @@
 import React from 'react';
+import Input from './Inputs.jsx';
 
 class MatrixEl extends React.Component {
 
-	render(){     
+	render(){    
+        let tdInput = (this.props.inpType === 'textarea' ? '' : <Input inType={this.props.inpType}/>);
+         
 		return (
-           <td>hi</td>
+           <td>{tdInput}</td>
 		)
 	}
 }
