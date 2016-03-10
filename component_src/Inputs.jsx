@@ -4,10 +4,11 @@ class Inputs extends React.Component {
 
 	render(){    
         let type = this.props.inType,
-            name = this.props.name;
+            name = this.props.name,
+            val = this.props.val;
          
 		return (
-           <input type={type} name={name}/>
+           <input type={type} name={name} value={val}/>
 		)
 	}
 }

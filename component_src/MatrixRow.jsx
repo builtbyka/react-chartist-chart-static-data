@@ -8,15 +8,22 @@ class MatrixRow extends React.Component {
         let tdAmount = this.props.TdAmount,
             inputType = this.props.InputType,
             el,
-            tds = [];
-        for(let i = 0; i < tdAmount; i++){
-            tds.push(<MatrixEl inpType={inputType} names={this.props.BodyRows}/>);
-        };
+            tds = [],
+            inputVals = this.props.BodyVals.map(
+                vals => {
+                    return(
+                        <MatrixEl inpType={inputType} names={this.props.BodyRows} inpValues={vals}/>
+                    )
+                }
+            )
+        // for(let i = 0; i < tdAmount; i++){
+        //     tds.push(<MatrixEl inpType={inputType} names={this.props.BodyRows}/>);
+        // };
               
 		return (
             <tr>
                <td>{this.props.BodyRows}</td>
-               {tds}
+               {inputVals}
             </tr>
              
       

@@ -9,7 +9,7 @@ class Matrix extends React.Component {
          MatrixRows = this.props.questions.map(
             td => {
                 return(
-                  <MatrixRow BodyRows={td} TdAmount={ElsAmount} InputType={this.props.type}/>
+                  <MatrixRow BodyRows={td} BodyVals={this.props.options} TdAmount={ElsAmount} InputType={this.props.type}/>
                 )
             }
         )
