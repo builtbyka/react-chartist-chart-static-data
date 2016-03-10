@@ -12,7 +12,7 @@ class MatrixRow extends React.Component {
             inputVals = this.props.BodyVals.map(
                 vals => {
                     return(
-                        <MatrixEl inpType={inputType} names={this.props.BodyRows} inpValues={vals}/>
+                        <MatrixEl updateAnswers={this.props.updateAnswers} inpType={inputType} names={this.props.BodyRows} inpValues={vals}/>
                     )
                 }
             )

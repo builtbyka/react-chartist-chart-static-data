@@ -1,14 +1,16 @@
 import React from 'react';
 
 class Inputs extends React.Component {
+    
 
-	render(){    
-        let type = this.props.inType,
-            name = this.props.name,
-            val = this.props.val;
-         
+	render(){
+            
+        let {type, name, val} = this.props;
+
 		return (
-           <input type={type} name={name} value={val}/>
+           <div>
+            <input onChange={this.props.updateAnswers} type={type} name={name} value={val}/>
+          </div> 
 		)
 	}
 }
