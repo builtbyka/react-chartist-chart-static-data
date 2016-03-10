@@ -22,15 +22,28 @@ class App extends React.Component {
    
     
     updateSeries(e){
+        let seriesOption,
+            seriesLabel,
+            seriesCopy = this.state.series.slice(0);
         this.state.answers.forEach(
             answer => {
-                this.state.options.forEach(
-                    option => {
-                        console.log(option, answer.value);
-                    }
-                )
+                this.state.options.forEach(function(value, i){
+                    if(value === answer.value){
+                        seriesOption = i;
+                    }   
+                })
+                 this.state.labels.forEach(function(value, i){
+                    if(value === answer.name){
+                        seriesLabel = i;
+                    }   
+                })
+                 seriesCopy[seriesOption][seriesLabel] += 1;
             }
+            
         )
+        
+        this.setState({series: seriesCopy});
+       
     }
     
     updateAnswers(e){
