@@ -8,12 +8,11 @@ class Matrix extends React.Component {
         super(props);
         this.state = {
             options : ['Affective', 'Cognitive', 'Another'],
-            type : 'textarea',
+            type : 'radio',
             questions : ['date','movie','gift','what'],
         };
        
     }
-    
 
 	render(){
          let ElsAmount = this.state.options.length,
@@ -25,14 +24,17 @@ class Matrix extends React.Component {
             }
         )
 		return (
-			<table>
-                <thead>
-                    <MatrixHeaderRow  HeaderRows={this.state.options}/>
-                </thead>
-                <tbody>
-                    {MatrixRows}
-                 </tbody>
-			</table>
+            <div>
+                <table>
+                    <thead>
+                        <MatrixHeaderRow  HeaderRows={this.state.options}/>
+                    </thead>
+                    <tbody>
+                        {MatrixRows}
+                    </tbody>
+                </table>
+                <input type="submit"/>
+            </div>
 		)
 	}
 }
