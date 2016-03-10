@@ -16,8 +16,22 @@ class App extends React.Component {
             type : 'Bar',
             answers : []
         };
+        this.updateSeries = this.updateSeries.bind(this);
         this.updateAnswers = this.updateAnswers.bind(this);
 	}
+   
+    
+    updateSeries(e){
+        this.state.answers.forEach(
+            answer => {
+                this.state.options.forEach(
+                    option => {
+                        console.log(option, answer.value);
+                    }
+                )
+            }
+        )
+    }
     
     updateAnswers(e){
         let name = e.currentTarget.name,
@@ -42,11 +56,9 @@ class App extends React.Component {
     }
 
 	render(){
-
-        console.log(this.state.answers);
 		return (
 			<div>
-                  <MatrixInput options={this.state.options} type={this.state.inptype} questions={this.state.labels} updateAnswers={this.updateAnswers}/>
+                  <MatrixInput options={this.state.options} type={this.state.inptype} questions={this.state.labels} updateAnswers={this.updateAnswers} updateSeries={this.updateSeries}/>
                   <ChartistGraph data={this.state} options={this.state.graphOps} type={this.state.type} />
 			</div>
 		)

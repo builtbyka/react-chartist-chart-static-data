@@ -23,7 +23,7 @@ class Matrix extends React.Component {
                         {MatrixRows}
                     </tbody>
                 </table>
-                <button>Submit</button>
+                <button onClick={this.props.updateSeries}>Submit</button>
             </div>
 		)
 	}
