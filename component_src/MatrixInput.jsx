@@ -8,7 +8,7 @@ class Matrix extends React.Component {
         super(props);
         this.state = {
             options : ['Affective', 'Cognitive', 'Another'],
-            type : 'radio',
+            type : 'textarea',
             questions : ['date','movie','gift','what'],
         };
        
