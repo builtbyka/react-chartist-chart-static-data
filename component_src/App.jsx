@@ -11,7 +11,7 @@ class App extends React.Component {
             options : ['Affective', 'Cognitive', 'Another'],
             inptype : 'radio',
             labels : ['date','movie','gift','what'],
-            series : [[1, 2, 4, 8]],
+            series : [[1, 2, 4, 8],[3, 2, 5, 1],[1, 1, 1, 2]],
             graphOps : {},
         };
 	}

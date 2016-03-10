@@ -10,7 +10,7 @@ class MatrixRow extends React.Component {
             el,
             tds = [];
         for(let i = 0; i < tdAmount; i++){
-            tds.push(<MatrixEl inpType={inputType}/>);
+            tds.push(<MatrixEl inpType={inputType} names={this.props.BodyRows}/>);
         };
               
 		return (

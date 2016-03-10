@@ -5,7 +5,7 @@ import Textarea from './Textarea.jsx';
 class MatrixEl extends React.Component {
 
 	render(){    
-        let tdInput = (this.props.inpType === 'textarea' ? <Textarea/> : <Input inType={this.props.inpType}/>);
+        let tdInput = (this.props.inpType === 'textarea' ? <Textarea/> : <Input inType={this.props.inpType} name={this.props.names}/>);
          
 		return (
            <td>{tdInput}</td>
