@@ -3,23 +3,13 @@ import MatrixHeaderRow from './MatrixHeaderRow.jsx';
 import MatrixRow from './MatrixRow.jsx';
 
 class Matrix extends React.Component {
-    
-    constructor(props){
-        super(props);
-        this.state = {
-            options : ['Affective', 'Cognitive', 'Another'],
-            type : 'radio',
-            questions : ['date','movie','gift','what'],
-        };
-       
-    }
 
 	render(){
-         let ElsAmount = this.state.options.length,
-         MatrixRows = this.state.questions.map(
+         let ElsAmount = this.props.options.length,
+         MatrixRows = this.props.questions.map(
             td => {
                 return(
-                  <MatrixRow BodyRows={td} TdAmount={ElsAmount} InputType={this.state.type}/>
+                  <MatrixRow BodyRows={td} TdAmount={ElsAmount} InputType={this.props.type}/>
                 )
             }
         )
@@ -27,7 +17,7 @@ class Matrix extends React.Component {
             <div>
                 <table>
                     <thead>
-                        <MatrixHeaderRow  HeaderRows={this.state.options}/>
+                        <MatrixHeaderRow  HeaderRows={this.props.options}/>
                     </thead>
                     <tbody>
                         {MatrixRows}
