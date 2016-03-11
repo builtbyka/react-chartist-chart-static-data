@@ -1,12 +1,11 @@
 import React from 'react';
 
 class ChartistKey extends React.Component {
-    
 
 	render(){
-        let cls ="leg-item-"+this.props.count;
+        let cls ="leg-item leg-item-"+this.props.count;
 		return (
-            <li className={cls}>- {this.props.legkey}</li>
+            <li><span className={cls}></span> - {this.props.legkey}</li>
 		)
 	}
 }

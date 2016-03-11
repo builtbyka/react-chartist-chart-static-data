@@ -17,9 +17,9 @@ class ChartistLegend extends React.Component {
                   )
 
 		return (
-          <dl>
+          <ul className="chartist-legend">
             {keys}
-        </dl>
+        </ul>
 		)
 	}
 }

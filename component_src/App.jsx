@@ -6,28 +6,95 @@ import Fetch from 'isomorphic-fetch';
 
 
 class App extends React.Component {
+    
+     componentDidMount() {
+        // this.serverRequest = $.get(this.props.source, function (result) {
+        // var lastGist = result[0];
+        // this.setState({
+        //     username: lastGist.owner.login,
+        //     lastGistUrl: lastGist.html_url
+        // });
+        // }.bind(this));
+        
+        fetch('http://129.31.194.154:3000/activities/charttest')
+            .then(function(response) {
+                if (response.status >= 400) {
+                    throw new Error("Bad response from server");
+                }
+                return response.json();
+            })
+            .then(function(results) {
+                let series = [];
+                results.forEach(
+                    result =>{
+                        let counter = 0;
+                          for(let i in result){
+                              if(i !== questionID){
+                                  if(series[counter] === undefined){
+                                      series.push([]);
+                                  }
+                                  series[counter].push(result[i]);
+                                  counter ++;
+                              }
+                          }
+                    }
+                )
+            });
+    }
+
+    componentWillUnmount() {
+        this.serverRequest.abort();
+    }
 
 	constructor(props){
 		super(props);
-        
+        // let results;
+        // fetch('http://129.31.194.154:3000/activities/charttest')
+        //     .then(function(response) {
+        //         if (response.status >= 400) {
+        //             throw new Error("Bad response from server");
+        //         }
+        //         return response.json();
+        //     })
+        //     .then(function(results) {
+        //         let series = [];
+        //         results.forEach(
+        //             result =>{
+        //                 let counter = 0;
+        //                   for(let i in result){
+        //                       if(i !== questionID){
+        //                           if(series[counter] === undefined){
+        //                               series.push([]);
+        //                           }
+        //                           series[counter].push(result[i]);
+        //                           counter ++;
+        //                       }
+        //                   }
+        //             }
+        //         )
+        //     });
         this.state = {
-            options : ['affirmative', 'cognitive'],
-            inptype : 'radio',
-            labels : ['date','movie','gift'],
-            series : [[1, 2, 4],[3, 2, 5]],
-            graphOps : {},
-            type : 'Bar',
-            answers : [],
-            userID:'kellis1',
-            instanceID:'TEST01',
-            versionID:'0.1',
-            timeStampUTC:'1457696167',
-            ip:'1.1.1.1',
-            enviroment:'Edx'
-        };
+                    options : ['affirmative', 'cognitive'],
+                    inptype : 'radio',
+                    labels : ['date','movie','gift'],
+                    series : [[1, 2, 4],[3, 2, 5]],
+                    graphOps : {},
+                    type : 'Bar',
+                    answers : [],
+                    userID:'mwellss',
+                    instanceID:'TEST01',
+                    versionID:'0.1.1',
+                    timeStampUTC:'1457696167',
+                    ip:'1.1.1.1',
+                    enviroment:'Edx'
+                };
         this.updateSeries = this.updateSeries.bind(this);
         this.updateAnswers = this.updateAnswers.bind(this);
 	}
+    
+    makeState(results){
+        console.log(results);
+    }
     
     updateSeries(e){
             let seriesOption,
