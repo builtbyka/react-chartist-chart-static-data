@@ -2,36 +2,55 @@ import React from 'react';
 import MatrixInput from './MatrixInput.jsx';
 import ChartistGraph from 'react-chartist';
 import ChartistLegend from './ChartistLegend.jsx';
+import Fetch from 'isomorphic-fetch';
 
 
 class App extends React.Component {
 
 	constructor(props){
 		super(props);
+        
         this.state = {
-            options : ['Affective', 'Cognitive', 'Another'],
+            options : ['affirmative', 'cognitive'],
             inptype : 'radio',
-            labels : ['date','movie','gift','what'],
-            series : [[1, 2, 4, 8],[3, 2, 5, 1],[1, 1, 1, 2]],
+            labels : ['date','movie','gift'],
+            series : [[1, 2, 4],[3, 2, 5]],
             graphOps : {},
             type : 'Bar',
-            answers : []
+            answers : [],
+            userID:'kellis1',
+            instanceID:'TEST01',
+            versionID:'0.1',
+            timeStampUTC:'1457696167',
+            ip:'1.1.1.1',
+            enviroment:'Edx'
         };
         this.updateSeries = this.updateSeries.bind(this);
         this.updateAnswers = this.updateAnswers.bind(this);
 	}
-   
     
     updateSeries(e){
-        let seriesOption,
+            let seriesOption,
             seriesLabel,
-            seriesCopy = this.state.series.slice(0);
+            seriesCopy = this.state.series.slice(0),
+            submission = [
+            ];
+        
+        //Update series and submission data
+        
         this.state.answers.forEach(
             answer => {
+                let submissionSegment = {userID: this.state.userID,
+                instanceID:this.state.instanceID,
+                versionID:this.state.versionID,
+                enviroment:this.state.enviroment}
                 this.state.options.forEach(function(value, i){
                     if(value === answer.value){
                         seriesOption = i;
-                    }   
+                        submissionSegment[value] = 1;
+                    } else{
+                        submissionSegment[value] = 0;
+                    } 
                 })
                  this.state.labels.forEach(function(value, i){
                     if(value === answer.name){
@@ -39,11 +58,22 @@ class App extends React.Component {
                     }   
                 })
                  seriesCopy[seriesOption][seriesLabel] += 1;
+                 submissionSegment.questionID = answer.name;
+                 submission.push(submissionSegment);
             }
-            
         )
-        
         this.setState({series: seriesCopy});
+        
+        //send data
+        
+        fetch("http://129.31.194.154:3000/activities/charttest", {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(submission)
+        }).then(response => console.log(response))
+        
        
     }
     
@@ -74,7 +104,7 @@ class App extends React.Component {
 			<div>
                   <MatrixInput options={this.state.options} type={this.state.inptype} questions={this.state.labels} updateAnswers={this.updateAnswers} updateSeries={this.updateSeries}/>
                   <ChartistGraph data={this.state} options={this.state.graphOps} type={this.state.type} />
-                  <ChartistLegend legend={this.state.options}/>
+                  <ChartistLegend type={this.state.type} legend={this.state.options}/>
 			</div>
 		)
 	}
