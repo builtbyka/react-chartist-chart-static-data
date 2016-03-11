@@ -1,6 +1,7 @@
 import React from 'react';
 import MatrixInput from './MatrixInput.jsx';
 import ChartistGraph from 'react-chartist';
+import ChartistLegend from './ChartistLegend.jsx';
 
 
 class App extends React.Component {
@@ -73,6 +74,7 @@ class App extends React.Component {
 			<div>
                   <MatrixInput options={this.state.options} type={this.state.inptype} questions={this.state.labels} updateAnswers={this.updateAnswers} updateSeries={this.updateSeries}/>
                   <ChartistGraph data={this.state} options={this.state.graphOps} type={this.state.type} />
+                  <ChartistLegend legend={this.state.options}/>
 			</div>
 		)
 	}
