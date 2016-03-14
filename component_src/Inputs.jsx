@@ -1,8 +1,6 @@
 import React from 'react';
 
 class Inputs extends React.Component {
-    
-
 	render(){
             
         let {type, name, val} = this.props;

@@ -8,6 +8,7 @@ import Fetch from 'isomorphic-fetch';
 class App extends React.Component {
     
      componentDidMount() {
+
         fetch('http://main-1914118172.eu-west-1.elb.amazonaws.com/activities/charttest')
             .then(function(response) {
                 if (response.status >= 400) {
@@ -15,7 +16,7 @@ class App extends React.Component {
                 }
                 return response.json();
             })
-            .then(function(results) {
+            .then((results) => {
                 let series = [];
                 results.forEach(
                     result =>{
@@ -42,31 +43,6 @@ class App extends React.Component {
 
 	constructor(props){
 		super(props);
-        // let results;
-        // fetch('http://129.31.194.154:3000/activities/charttest')
-        //     .then(function(response) {
-        //         if (response.status >= 400) {
-        //             throw new Error("Bad response from server");
-        //         }
-        //         return response.json();
-        //     })
-        //     .then(function(results) {
-        //         let series = [];
-        //         results.forEach(
-        //             result =>{
-        //                 let counter = 0;
-        //                   for(let i in result){
-        //                       if(i !== questionID){
-        //                           if(series[counter] === undefined){
-        //                               series.push([]);
-        //                           }
-        //                           series[counter].push(result[i]);
-        //                           counter ++;
-        //                       }
-        //                   }
-        //             }
-        //         )
-        //     });
         this.state = {
                     options : ['affirmative', 'cognitive'],
                     inptype : 'radio',
@@ -85,10 +61,7 @@ class App extends React.Component {
         this.updateSeries = this.updateSeries.bind(this);
         this.updateAnswers = this.updateAnswers.bind(this);
 	}
-    
-    makeState(results){
-        console.log(results);
-    }
+  
     
     updateSeries(e){
             let seriesOption,
@@ -123,8 +96,11 @@ class App extends React.Component {
                  submission.push(submissionSegment);
             }
         )
-        this.setState({series: seriesCopy});
         
+        //update the page
+        
+        this.setState({series: seriesCopy});
+       
         //send data
         
         fetch('http://main-1914118172.eu-west-1.elb.amazonaws.com/activities/charttest', {
@@ -135,9 +111,9 @@ class App extends React.Component {
         body: JSON.stringify(submission)
         }).then(response => console.log(response))
         
-       
+      
     }
-    
+  
     updateAnswers(e){
         let name = e.currentTarget.name,
             value = e.currentTarget.value,
@@ -151,7 +127,7 @@ class App extends React.Component {
                     }
                 }
             )
-        
+       
         if(found === false){
              answersCopy.push({name:name, value:value});
         }
@@ -164,11 +140,23 @@ class App extends React.Component {
 		return (
 			<div>
                   <MatrixInput options={this.state.options} type={this.state.inptype} questions={this.state.labels} updateAnswers={this.updateAnswers} updateSeries={this.updateSeries}/>
-                  <ChartistGraph data={this.state} options={this.state.graphOps} type={this.state.type} />
-                  <ChartistLegend type={this.state.type} legend={this.state.options}/>
+                  <div style={styles.chart}>
+                    <ChartistGraph data={this.state} options={this.state.graphOps} type={this.state.type} />
+                  </div>
+                  <ChartistLegend style="width: 20%" type={this.state.type} legend={this.state.options}/>
 			</div>
 		)
 	}
+}
+
+let styles = {
+    
+    chart : {
+        float: 'left',
+         marginRight: '2%',
+        width: '85%',
+    }
+    
 }
 
 export default App

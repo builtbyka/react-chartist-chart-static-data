@@ -237,7 +237,7 @@
 }
 
 @for $i from 0 to length($leg-item-names) {
-    .leg-item-#{$i} {
+    .leg-item-#{$i+1} {
     $color: nth($ct-series-colors, $i + 1);
 
     @include ct-key-series-color($color);
