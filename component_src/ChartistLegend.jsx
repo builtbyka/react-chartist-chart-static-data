@@ -9,10 +9,11 @@ class ChartistLegend extends React.Component {
             counter = 0,
             keys = legend.map(
                     key => {
-                        return (
-                            <ChartistKey type={this.props.type} legkey={key} count={counter}/>
-                        )
                         counter ++;
+                        return (
+                            <ChartistKey key={counter} type={this.props.type} legkey={key} count={counter}/>
+                        )
+                        
                     }
                   )
 

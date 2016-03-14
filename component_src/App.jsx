@@ -74,6 +74,7 @@ class App extends React.Component {
                     graphOps : {},
                     type : 'Bar',
                     answers : [],
+                    series: [],
                     userID:'mwellss',
                     instanceID:'TEST01',
                     versionID:'0.1.1',

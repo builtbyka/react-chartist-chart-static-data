@@ -6,10 +6,12 @@ class Matrix extends React.Component {
 
 	render(){
          let ElsAmount = this.props.options.length,
+         counter = 0,
          MatrixRows = this.props.questions.map(
             td => {
+                counter ++;
                 return(
-                  <MatrixRow BodyRows={td} BodyVals={this.props.options} TdAmount={ElsAmount} InputType={this.props.type} updateAnswers={this.props.updateAnswers}/>
+                  <MatrixRow key={counter} BodyRows={td} BodyVals={this.props.options} TdAmount={ElsAmount} InputType={this.props.type} updateAnswers={this.props.updateAnswers}/>
                 )
             }
         )

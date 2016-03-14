@@ -6,10 +6,12 @@ class MatrixHeader extends React.Component {
 
 	render(){
         
-        let MatrixHeaderEls = this.props.HeaderRows.map(
+        let counter = 0,
+            MatrixHeaderEls = this.props.HeaderRows.map(
             th => {
+                counter ++;
                 return(
-                    <MatrixHeaderEl HeaderEl={th}/>
+                    <MatrixHeaderEl key={counter} HeaderEl={th}/>
                 )
             }
         )

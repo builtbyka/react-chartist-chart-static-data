@@ -9,10 +9,12 @@ class MatrixRow extends React.Component {
             inputType = this.props.InputType,
             el,
             tds = [],
+            counter = 0,
             inputVals = this.props.BodyVals.map(
                 vals => {
+                    counter ++;
                     return(
-                        <MatrixEl updateAnswers={this.props.updateAnswers} inpType={inputType} names={this.props.BodyRows} inpValues={vals}/>
+                        <MatrixEl key={counter} updateAnswers={this.props.updateAnswers} inpType={inputType} names={this.props.BodyRows} inpValues={vals}/>
                     )
                 }
             )
