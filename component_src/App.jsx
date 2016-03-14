@@ -8,18 +8,10 @@ import Fetch from 'isomorphic-fetch';
 class App extends React.Component {
     
      componentDidMount() {
-        // this.serverRequest = $.get(this.props.source, function (result) {
-        // var lastGist = result[0];
-        // this.setState({
-        //     username: lastGist.owner.login,
-        //     lastGistUrl: lastGist.html_url
-        // });
-        // }.bind(this));
-        
-        fetch('http://129.31.194.154:3000/activities/charttest')
+        fetch('http://main-1914118172.eu-west-1.elb.amazonaws.com/activities/charttest')
             .then(function(response) {
                 if (response.status >= 400) {
-                    throw new Error("Bad response from server");
+                    throw new Error('Bad response from server');
                 }
                 return response.json();
             })
@@ -29,7 +21,7 @@ class App extends React.Component {
                     result =>{
                         let counter = 0;
                           for(let i in result){
-                              if(i !== questionID){
+                             if(i !== 'questionID'){
                                   if(series[counter] === undefined){
                                       series.push([]);
                                   }
@@ -39,11 +31,13 @@ class App extends React.Component {
                           }
                     }
                 )
+                this.setState({series : series})
             });
     }
 
     componentWillUnmount() {
-        this.serverRequest.abort();
+        //this is fine but overkill for the mo.
+        //this.serverRequest.abort();
     }
 
 	constructor(props){
@@ -77,7 +71,6 @@ class App extends React.Component {
                     options : ['affirmative', 'cognitive'],
                     inptype : 'radio',
                     labels : ['date','movie','gift'],
-                    series : [[1, 2, 4],[3, 2, 5]],
                     graphOps : {},
                     type : 'Bar',
                     answers : [],
@@ -133,7 +126,7 @@ class App extends React.Component {
         
         //send data
         
-        fetch("http://129.31.194.154:3000/activities/charttest", {
+        fetch('http://main-1914118172.eu-west-1.elb.amazonaws.com/activities/charttest', {
         method: 'POST',
         headers: {
         'Content-Type': 'application/json'
