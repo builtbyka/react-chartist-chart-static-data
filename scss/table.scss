@@ -1,0 +1,35 @@
+@mixin box-sizing($box-model) {
+  -webkit-box-sizing: $box-model; // Safari <= 5
+     -moz-box-sizing: $box-model; // Firefox <= 19
+          box-sizing: $box-model;
+}
+
+table{
+    @include box-sizing(border-box);
+    border: 1px solid #eee;
+    margin: 10px 5%;
+    width: 90%;
+    
+    thead{
+        background: #eee;
+        th{
+            font-weight: normal;
+            padding: 10px;
+        }
+    }
+    
+    tbody{
+        tr{
+            border-bottom: 1px solid #eee;
+            td{
+                border-left: 1px solid #eee;
+                padding: 10px;
+                text-align: center;
+            
+                &:first-of-type{
+                    text-align: left;
+                }
+            }
+        }
+    }
+}

@@ -243,3 +243,8 @@
     @include ct-key-series-color($color);
     }
 }
+
+.ct-chart{
+    clear: both;
+    margin-top: 20px;
+}
